@@ -1,9 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Welcome from "./welcome";
-import App from "./app";
-import Header from "./header";
-import Logout from "./logout";
+import App from "./app_easy";
 
 // function HelloWorld() {
 //     return (
@@ -24,7 +22,9 @@ if (location.pathname == "/welcome") {
         //     <Header />
         //     <Logout />
         // </header>
-        <App />
+        <div>
+            <App />
+        </div>
         //     </Provider>
     );
     // console.log("LOGIN AREA");

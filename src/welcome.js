@@ -15,7 +15,7 @@ export default function Welcome() {
             <header>
                 <HashRouter>
                     <Link to="/">
-                        <img className="logo" src="/pic.png" alt="logo" />
+                        <img className="logo" src="/logo.png" alt="logo" />
                     </Link>
                     <h1>
                         Pick me up <em> ... before I go-go</em>
