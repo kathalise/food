@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "./axios.js";
-import { Link } from "react-router-dom";
 
 export default class Registration extends React.Component {
     constructor(props) {
@@ -44,10 +43,9 @@ export default class Registration extends React.Component {
                 <h3
                     style={{
                         alignSelf: "center",
-                        fontFamily: "Times New Roman",
                     }}
                 >
-                    Join and save the planet!
+                    Join us today!
                 </h3>
                 {this.state.error && (
                     <div className="error">
@@ -78,12 +76,12 @@ export default class Registration extends React.Component {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <button className="submit-button" onClick={() => this.submit()}>
-                    Submit
+                    Register
                 </button>
                 <div className="redirect">
-                    <Link to="/login" style={{ color: "black" }}>
+                    {/* <Link to="/login" style={{ color: "black" }}>
                         Already a member? Login here.
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         );

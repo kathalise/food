@@ -63,12 +63,12 @@ export default class Login extends React.Component {
                     Login
                 </button>
                 <div className="redirect">
-                    <Link to="/" style={{ color: "black" }}>
+                    {/* <Link to="/" style={{ color: "black" }}>
                         Not yet a member? Register here.
                     </Link>
                     <br></br>
-                    <br></br>
-                    <Link to="/reset" style={{ color: "black" }}>
+                    <br></br> */}
+                    <Link to="/reset" style={{}}>
                         Forgot Your password?
                     </Link>
                 </div>

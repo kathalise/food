@@ -44,6 +44,29 @@ app.get("/welcome", function (req, res) {
     // }
 });
 
+app.get("/user/logged-in", function (req, res) {
+    console.log("HELLO USER PAGE! userId: ");
+    // const userId = req.session.userId;
+    // db.getUserInfo(userId)
+    //     .then((result) => {
+    //         // console.log("result: ", result.rows[0]);
+    //         const userInfo = result.rows[0];
+    //         // console.log("UserInfo", userInfo);
+    //         res.json(userInfo);
+    //     })
+    //     .catch((err) => {
+    //         console.log("err in GET /user", err);
+    //     });
+});
+////////////////////////////////////////////////
+/* --------------    LOG OUT    ------------- */
+////////////////////////////////////////////////
+
+app.get("/logout", (req, res) => {
+    req.session.userId = null;
+    res.redirect("/");
+});
+
 ////////////////////////////////////////////////
 /* -------------- LAST ROUTE    ------------- */
 ////////////////////////////////////////////////
