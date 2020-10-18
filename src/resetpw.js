@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios.js";
 import { Link } from "react-router-dom";
+import Login from "./login";
 
 export default class ResetPassword extends React.Component {
     constructor(props) {
@@ -79,6 +80,11 @@ export default class ResetPassword extends React.Component {
                     <h3 style={{ alignSelf: "center" }}>Reset Your Password</h3>
                     {/* <p>Please enter Your email address:</p> */}
                     {/* <p>Please enter Your email address</p> */}
+                    {this.state.error && (
+                        <div className="error">
+                            Oops! Something went wrong. Please try again.
+                        </div>
+                    )}
                     <input
                         name="email"
                         type="email"
@@ -108,12 +114,19 @@ export default class ResetPassword extends React.Component {
             elem = (
                 <div className="registration-form">
                     <h3 style={{ alignSelf: "center" }}>Reset Your Password</h3>
-                    <p>Please enter the code you received:</p>
+                    {this.state.error && (
+                        <div className="error">
+                            Oops! Incomplete input. Try again.
+                        </div>
+                    )}
+                    {/* <p style={{ alignSelf: "center" }}>
+                        Please enter the code you received
+                    </p> */}
                     <input
                         name="code"
                         type="text"
-                        placeholder="Code"
-                        key={1} // what ever this is?
+                        placeholder="Enter Code"
+                        key={4} // what ever this is?
                         onChange={(e) => this.handleChange(e)}
                     />
                     <input
@@ -137,23 +150,10 @@ export default class ResetPassword extends React.Component {
                     <h3 style={{ alignSelf: "center" }}>
                         Your password has been reset successfully!
                     </h3>
-                    <div className="redirect">
-                        <Link to="/login" style={{ color: "black" }}>
-                            Log in with new Password.
-                        </Link>
-                    </div>
+                    <Login />
                 </div>
             );
         }
-        return (
-            <div>
-                {this.state.error && (
-                    <div className="error">
-                        Oops! Something went wrong. Try again.
-                    </div>
-                )}
-                {elem}
-            </div>
-        );
+        return <div>{elem}</div>;
     }
 }

@@ -50,6 +50,11 @@ header {
     border: none; */
 }
 
+.reg-buttons button:hover {
+    outline: none;
+    background-color: #d9e7eb;
+}
+
 .reg-buttons button:active {
     outline: none;
     background-color: #02738f;
@@ -61,8 +66,9 @@ header {
 }
 
 .logo {
-    height: 70px;
+    height: 65px;
     margin-top: 5px;
+    margin-left: 5px;
 }
 
 .router-welcome {
@@ -181,13 +187,51 @@ a:visited {
     margin: 20px;
 }
 
+/* --------------------- APP CONTAINER --------------------- */
+.app-container {
+    /* margin-top: 100px;
+    height: 800px;
+    background-color: pink; */
+}
+
+.app {
+    margin-top: 100px;
+    /* height: 800px;
+    background-color: pink; */
+}
+
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    width: 25%;
+    border-radius: 2px;
+    border: lightblue 0.5px solid;
+    margin: 20px;
+    /* padding: 30px; */
+}
+
+.user-profile img {
+    object-fit: cover;
+}
+
 footer {
-    height: 120px;
+    /* height: 120px; */
     /* border: 2px red solid; */
+    background-color: rgba(173, 216, 230, 0.527);
+    padding: 5px;
 }
 
 .footer-container {
     display: flex;
     flex-direction: row;
-    margin: 20px;
+    margin: 10px;
+}
+
+.footer-container p {
+    margin-left: 20px;
+}
+
+.logo-footer {
+    height: 100px;
 }

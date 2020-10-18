@@ -43,8 +43,7 @@ export default class Login extends React.Component {
                 <h3 style={{ alignSelf: "center" }}>Login to your Account</h3>
                 {this.state.error && (
                     <div className="error">
-                        Oops! Something went wrong.<br></br>
-                        Please try again.
+                        Oops! Something went wrong. Please try again.
                     </div>
                 )}
                 <input
