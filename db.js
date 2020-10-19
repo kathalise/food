@@ -48,3 +48,25 @@ module.exports.getCode = (email) => {
     const params = [email];
     return db.query(q, params);
 };
+
+// ------------------- offers & categories ------------------- //
+
+module.exports.choseCategory = (category_name) => {
+    const q = `SELECT * FROM categories WHERE name = $1`;
+    const params = [category_name];
+    return db.query(q, params);
+};
+
+module.exports.addOffer = (
+    offerer_id,
+    title,
+    category,
+    description,
+    imgurl
+) => {
+    const q = `INSERT INTO offers (offerer_id, title, category_id, description, imgurl_offer) VALUES ($1, $2, $3, $4, $5) 
+    RETURNING id`;
+
+    const params = [offerer_id, title, category, description, imgurl];
+    return db.query(q, params);
+};

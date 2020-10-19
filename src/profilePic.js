@@ -9,6 +9,7 @@ export default function ProfilePic({
 }) {
     return (
         <>
+            {/* <h1>Hey {firstname} !</h1> */}
             <img
                 // onClick={toggleUploader}
                 className={imgClassName}

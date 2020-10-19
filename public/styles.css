@@ -200,6 +200,11 @@ a:visited {
     background-color: pink; */
 }
 
+.app-render {
+    display: flex;
+    flex-direction: row;
+}
+
 .user-profile {
     display: flex;
     flex-direction: column;
@@ -215,6 +220,61 @@ a:visited {
     object-fit: cover;
 }
 
+.offered-product {
+    display: flex;
+    flex-direction: column;
+    background-color: lightblue;
+    margin: 20px;
+    width: 40%;
+    align-items: center;
+}
+
+.offered-product form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 300px;
+}
+
+#product-type {
+    border: none;
+    margin: 10px 10px 5px;
+    padding: 6px 6px;
+}
+
+.offered-product textarea {
+    border: none;
+    margin: 10px 10px 5px;
+    padding: 6px 6px;
+}
+.offered-product button {
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 2px 4px 2px 0 #02738f;
+    padding: 5px 5px;
+    margin: 5px 10px;
+    background-color: white;
+    outline: none;
+}
+.offered-product button:hover {
+    outline: none;
+    background-color: #cfe2e7;
+    /* box-shadow: inset 3px 4px 0.5px #020860; */
+}
+.offered-product button:active {
+    outline: none;
+    background-color: #02738f;
+    box-shadow: inset 3px 4px 0.5px #020860;
+}
+
+.available-product {
+    margin: 20px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+/* --------------------- FOOTER--------------------- */
 footer {
     /* height: 120px; */
     /* border: 2px red solid; */

@@ -272,6 +272,16 @@ app.get("/user/logged-in", function (req, res) {
             console.log("err in GET /user", err);
         });
 });
+
+////////////////////////////////////////////////
+/* --------------  POST OFFER   ------------- */
+////////////////////////////////////////////////
+
+app.post("/post/offer", function (req, res) {
+    console.log("HELLO FROM POST OFFER, posted by:", req.session.userId);
+});
+
+// addOffer;
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////
