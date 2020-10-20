@@ -297,48 +297,9 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
     const address = req.body.address;
     const file = req.body.file;
 
-    //     title: 'Banana',
-    //   'product-type': 'fruit',
-    //   description: 'Great fruit!',
-    //   address: 'Berliner Str. 1',
-    //   file: 'C:\\fakepath\\george.png'
-
-    //   offerer_id,
-    //     title,
-    //     description,
-    //     imgurl,
-    //     category,
-    //     address
+    // db.addOffer;
 });
 
-// addOffer;
-
-// app.post(
-//     "/uploadProfilepic",
-//     uploader.single("file"),
-//     s3.upload,
-//     (req, res) => {
-//         console.log("INSIDE POST uploadProfilePic: ", req.session);
-//         const userId = req.session.userId;
-
-//         console.log(
-//             "userId, imgLink: ",
-//             userId,
-//             config.s3Url + req.file.filename
-//         );
-//         db.uploadProfilePic(config.s3Url + req.file.filename, userId)
-//             .then((result) => {
-//                 console.log(
-//                     "Inside uploadProfilePic, result: ",
-//                     result.rows[0].imgurl
-//                 );
-//                 res.json(result.rows[0].imgurl);
-//             })
-//             .catch((err) => {
-//                 console.log("err in uploadProfilePic", err);
-//             });
-//     }
-// );
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////
