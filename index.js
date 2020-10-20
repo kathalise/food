@@ -281,15 +281,10 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
     req,
     res
 ) {
-    console.log("HELLO FROM POST OFFER, posted by:", req.session.userId);
-    console.log("Input from Form / req.body:", req.body.title);
-    console.log("Input from Form / req.file:", req.file);
-    console.log("Input from Form, category:", req.body.category);
-    console.log("Input from Form, description:", req.body.description);
-    console.log("Input from Form, address:", req.body.address);
-    // console.log("Input from Form, file:", req.file);
-
-    console.log("imgLink: ", config.s3Url + req.file.filename);
+    // console.log("HELLO FROM POST OFFER, posted by:", req.session.userId);
+    // console.log("Input from Form / req.body:", req.body.title);
+    // console.log("Input from Form / req.file:", req.file);
+    // console.log("imgLink: ", config.s3Url + req.file.filename);
 
     const offererId = req.session.userId;
     const title = req.body.title;
@@ -304,6 +299,40 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
         })
         .catch((err) => {
             console.log("err in uploadOffer", err);
+        });
+});
+
+app.get(`/get/offers/:offerId`, function (req, res) {
+    console.log("HELLO FROM GET/OFFERS , req.params: ", req.params);
+    const offerId = req.params.offerId;
+
+    db.getOffer(offerId)
+        .then((result) => {
+            console.log("result.rows", result.rows[0]);
+            if (result.rows[0]) {
+                // console.log("RESULT: ", result.rows[0]);
+                const offerInfo = result.rows[0];
+                res.json(offerInfo);
+            } else if (result.rows[0] == undefined) {
+                res.json({ noOfferId: true });
+            }
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
+////////////////////////////////////////////////
+/* -------------  GET ALL OFFERS  ----------- */
+////////////////////////////////////////////////
+app.get("/get/all-offers", function (req, res) {
+    console.log("INSIDE GET ALL OFFERS");
+    db.getAllOffers()
+        .then((result) => {
+            console.log("result:", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("err", err);
         });
 });
 

@@ -6,10 +6,12 @@ import Logout from "./logout";
 import Footer from "./footer";
 import { useStore } from "react-redux";
 // import Categories from "./categories";
-import ProfilePic from "./profilePic";
+import Profile from "./profile";
 import Bio from "./bio";
 import UploadProduct from "./uploadProduct";
 import AvailableOffers from "./availableOffers";
+import AllOffers from "./allOffers";
+import { Link } from "react-router-dom";
 
 export default function App() {
     const [user, setUser] = useState("");
@@ -31,28 +33,62 @@ export default function App() {
             <div className="app-container">
                 <header>
                     <Header />
-                    <Logout />
+                    <div className="reg-buttons">
+                        <button>
+                            <Link
+                                to="/myProfile"
+                                style={{ textDecoration: "none" }}
+                            >
+                                {" "}
+                                My Profile{" "}
+                            </Link>
+                        </button>
+                        <button>
+                            <Link
+                                to="/upload"
+                                style={{ textDecoration: "none" }}
+                            >
+                                {" "}
+                                Post Offer{" "}
+                            </Link>
+                        </button>
+                        <Logout />
+                    </div>
                 </header>
                 <div className="app">
                     <div className="app-render">
-                        <div className="user-profile">
-                            <ProfilePic
-                                firstname={user.firstname}
-                                lastname={user.lastname}
-                                imgUrl={user.imgUrl || "/default.png"}
-                                // toggleUploader={this.toggleUploader}
-                            />
-                            <Bio />
-                        </div>
-                        <div className="offered-product">
-                            <UploadProduct userId={user.id} />
-                        </div>
-                        <div className="available-product">
-                            {/* <Route path="/offers" component={AvailableOffers} /> */}
+                        <Route
+                            exact
+                            path="/myProfile"
+                            render={() => (
+                                <Profile
+                                    firstname={user.firstname}
+                                    lastname={user.lastname}
+                                    imgUrl={user.imgUrl || "/default.png"}
+                                    // toggleUploader={this.toggleUploader}
+                                />
+                            )}
+                        />
 
-                            <AvailableOffers />
-                        </div>
+                        <Route
+                            exact
+                            path="/upload"
+                            render={() => <UploadProduct userId={user.id} />}
+                        />
+
+                        {/* <div className="available-product"> */}
+                        <Route
+                            exact
+                            path="/offers/:offerId"
+                            component={AvailableOffers}
+                        />
+
+                        {/* <AvailableOffers /> */}
+                        {/* </div> */}
                     </div>
+                </div>
+                <div className="all-product">
+                    <Route exact path="/" component={AllOffers} />
                 </div>
                 <footer>
                     <Footer />

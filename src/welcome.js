@@ -7,6 +7,7 @@ import ResetPassword from "./resetpw.js";
 import { Link } from "react-router-dom";
 import Header from "./header.js";
 import Footer from "./footer.js";
+import AllOffers from "./allOffers";
 
 export default function Welcome() {
     return (
@@ -55,13 +56,13 @@ export default function Welcome() {
                             </a>
                         </div>
                     </div>
-                    <div className="food-items-container">
-                        <div className="food-cards"></div>
-                        <div className="food-cards"></div>
-                        <div className="food-cards"></div>
-                        <div className="food-cards"></div>
-                        <div className="food-cards"></div>
-                    </div>
+                    <HashRouter>
+                        <>
+                            {/* <div className="all-offers-container"> */}
+                            <Route exact path="/" component={AllOffers} />
+                            {/* </div> */}
+                        </>
+                    </HashRouter>
                 </div>
                 <footer>
                     <Footer />

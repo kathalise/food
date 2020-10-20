@@ -65,9 +65,21 @@ module.exports.addOffer = (
     imgurl,
     address
 ) => {
-    const q = `INSERT INTO offers (offerer_id, title, category, description, imgurl_offer, address,) VALUES ($1, $2, $3, $4, $5, $6) 
+    const q = `INSERT INTO offers (offerer_id, title, category, description, imgurl_offer, address) VALUES ($1, $2, $3, $4, $5, $6) 
     RETURNING offers.id`;
 
-    const params = [offerer_id, title, description, imgurl, category, address];
+    const params = [offerer_id, title, category, description, imgurl, address];
+    return db.query(q, params);
+};
+
+module.exports.getAllOffers = () => {
+    const q = `SELECT * FROM offers ORDER BY id DESC`;
+    return db.query(q);
+};
+
+module.exports.getOffer = (id) => {
+    // const q = `SELECT * FROM offers WHERE id = $1`;
+    const q = `SELECT * FROM offers INNER JOIN users ON users.id= offerer_id WHERE offers.id = $1;`;
+    const params = [id];
     return db.query(q, params);
 };

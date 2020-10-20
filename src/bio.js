@@ -7,11 +7,12 @@ export default function Bio() {
         //     elem = (
         //         <>
         <textarea
-            cols="38"
+            cols="20"
             rows="4"
+            style={{ border: "none", fontSize: "16px" }}
             // defaultValue={this.props.bio}
             // onChange={(e) => this.handleChange(e)}
-            placeholder="Add a bio ✍️"
+            placeholder="Tell others about yourself ..."
         ></textarea>
         // {
         /* <div className="bio-buttons">

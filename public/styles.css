@@ -6,6 +6,7 @@
 
 body {
     position: relative;
+    /* padding-top: 100px; */
 }
 
 .layout-wrapper {
@@ -69,6 +70,8 @@ header {
     height: 65px;
     margin-top: 5px;
     margin-left: 5px;
+    display: flex;
+    flex-direction: row;
 }
 
 .router-welcome {
@@ -143,6 +146,11 @@ a:visited {
     color: black;
 }
 
+Link:visited {
+    text-decoration: none;
+    color: black;
+}
+
 .error {
     text-align: center;
     margin-bottom: 20px;
@@ -192,10 +200,12 @@ a:visited {
     /* margin-top: 100px;
     height: 800px;
     background-color: pink; */
+    padding-top: 100px;
+    /* border: 2px solid blue; */
 }
 
 .app {
-    margin-top: 100px;
+    /* margin-top: 100px; */
     /* height: 800px;
     background-color: pink; */
 }
@@ -209,15 +219,36 @@ a:visited {
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    width: 25%;
+    width: 30%;
     border-radius: 2px;
     border: lightblue 0.5px solid;
     margin: 20px;
-    /* padding: 30px; */
+    margin-bottom: 30px;
+    padding: 30px;
 }
 
 .user-profile img {
     object-fit: cover;
+}
+
+.user-profile button {
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 2px 4px 2px 0 #02738f;
+    padding: 5px 5px;
+    margin: 5px 10px;
+    background-color: white;
+    outline: none;
+}
+.user-profile button:hover {
+    outline: none;
+    background-color: #cfe2e7;
+    /* box-shadow: inset 3px 4px 0.5px #020860; */
+}
+.user-profile button:active {
+    outline: none;
+    background-color: #02738f;
+    box-shadow: inset 3px 4px 0.5px #020860;
 }
 
 .offered-product {
@@ -269,10 +300,62 @@ a:visited {
 
 .available-product {
     margin: 20px;
-    width: 30%;
+    width: 100%;
+    /* height: 500px; */
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    border-radius: 2px;
+    border: lightblue 0.5px solid;
+    padding: 30px;
+}
+
+.available-product-detail {
+    margin: 50px;
+}
+
+.available-product-detail button {
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 2px 4px 2px 0 #02738f;
+    padding: 5px 5px;
+    /* margin: 5px 10px; */
+    background-color: white;
+    outline: none;
+}
+.available-product-detail button:hover {
+    outline: none;
+    background-color: #cfe2e7;
+    /* box-shadow: inset 3px 4px 0.5px #020860; */
+}
+.available-product-detail button:active {
+    outline: none;
+    background-color: #02738f;
+    box-shadow: inset 3px 4px 0.5px #020860;
+}
+
+.picture-offer {
+    object-fit: cover;
+    width: 300px;
+}
+
+.offers-card {
+    border-radius: 2px;
+    border: lightblue 0.5px solid;
+    /* height: 350px; */
+    width: 300px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    box-shadow: 4px 4px 5px 0 #02738f2f;
+}
+
+.all-offers-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 /* --------------------- FOOTER--------------------- */
 footer {
