@@ -20,7 +20,7 @@ export default function App() {
                 const { data } = await axios.get("/user/logged-in", {});
                 console.log("res from db: ", data);
                 setUser(data);
-                // console.log(data.id);
+                console.log(("data.id", data.id));
             } catch (err) {
                 console.log("err: ", err);
             }
@@ -32,9 +32,6 @@ export default function App() {
                 <header>
                     <Header />
                     <Logout />
-                    <a href={"/offers"}>
-                        <button className="submit-button">List</button>
-                    </a>
                 </header>
                 <div className="app">
                     <div className="app-render">
@@ -48,12 +45,12 @@ export default function App() {
                             <Bio />
                         </div>
                         <div className="offered-product">
-                            <UploadProduct />
+                            <UploadProduct userId={user.id} />
                         </div>
                         <div className="available-product">
-                            <Route path="/offers" component={AvailableOffers} />
+                            {/* <Route path="/offers" component={AvailableOffers} /> */}
 
-                            {/* <AvailableOffers /> */}
+                            <AvailableOffers />
                         </div>
                     </div>
                 </div>

@@ -4,10 +4,10 @@ CREATE TABLE offers(
   id SERIAL PRIMARY KEY,
   offerer_id INT REFERENCES users(id) NOT NULL,
   title VARCHAR(255) DEFAULT NULL,
-  category_id INT REFERENCES categories(id) NOT NULL,
+  category VARCHAR(255) DEFAULT NULL,
   description TEXT DEFAULT NULL,
   imgurl_offer VARCHAR(255) DEFAULT NULL,
-  address_id INT REFERENCES address(id) NOT NULL,
+  address VARCHAR(255) DEFAULT NULL,
   available BOOLEAN DEFAULT true,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

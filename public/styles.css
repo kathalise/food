@@ -236,7 +236,7 @@ a:visited {
     width: 300px;
 }
 
-#product-type {
+.category {
     border: none;
     margin: 10px 10px 5px;
     padding: 6px 6px;

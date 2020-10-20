@@ -277,11 +277,68 @@ app.get("/user/logged-in", function (req, res) {
 /* --------------  POST OFFER   ------------- */
 ////////////////////////////////////////////////
 
-app.post("/post/offer", function (req, res) {
+app.post("/post/offer", uploader.single("file"), s3.upload, function (
+    req,
+    res
+) {
     console.log("HELLO FROM POST OFFER, posted by:", req.session.userId);
+    console.log("Input from Form:", req.body.title);
+    console.log("Input from Form, category:", req.body.category);
+    console.log("Input from Form, description:", req.body.description);
+    console.log("Input from Form, address:", req.body.address);
+    console.log("Input from Form, file:", req.body.file);
+
+    console.log("imgLink: ", config.s3Url + req.file.filename);
+
+    const offererId = req.session.userId;
+    const title = req.body.title;
+    const category = req.body.category;
+    const description = req.body.description;
+    const address = req.body.address;
+    const file = req.body.file;
+
+    //     title: 'Banana',
+    //   'product-type': 'fruit',
+    //   description: 'Great fruit!',
+    //   address: 'Berliner Str. 1',
+    //   file: 'C:\\fakepath\\george.png'
+
+    //   offerer_id,
+    //     title,
+    //     description,
+    //     imgurl,
+    //     category,
+    //     address
 });
 
 // addOffer;
+
+// app.post(
+//     "/uploadProfilepic",
+//     uploader.single("file"),
+//     s3.upload,
+//     (req, res) => {
+//         console.log("INSIDE POST uploadProfilePic: ", req.session);
+//         const userId = req.session.userId;
+
+//         console.log(
+//             "userId, imgLink: ",
+//             userId,
+//             config.s3Url + req.file.filename
+//         );
+//         db.uploadProfilePic(config.s3Url + req.file.filename, userId)
+//             .then((result) => {
+//                 console.log(
+//                     "Inside uploadProfilePic, result: ",
+//                     result.rows[0].imgurl
+//                 );
+//                 res.json(result.rows[0].imgurl);
+//             })
+//             .catch((err) => {
+//                 console.log("err in uploadProfilePic", err);
+//             });
+//     }
+// );
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////
