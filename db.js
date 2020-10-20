@@ -60,12 +60,12 @@ module.exports.getCode = (email) => {
 module.exports.addOffer = (
     offerer_id,
     title,
-    description,
     category,
-    address,
-    imgurl
+    description,
+    imgurl,
+    address
 ) => {
-    const q = `INSERT INTO offers (offerer_id, title, category, description, imgurl_offer, address) VALUES ($1, $2, $3, $4, $5, $6) 
+    const q = `INSERT INTO offers (offerer_id, title, category, description, imgurl_offer, address,) VALUES ($1, $2, $3, $4, $5, $6) 
     RETURNING offers.id`;
 
     const params = [offerer_id, title, description, imgurl, category, address];

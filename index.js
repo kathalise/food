@@ -298,7 +298,7 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
     const address = req.body.address;
     const imgurl = config.s3Url + req.file.filename;
 
-    db.addOffer(offererId, title, description, category, address, imgurl)
+    db.addOffer(offererId, title, category, description, imgurl, address)
         .then((result) => {
             console.log("Inside addOffer, result: ", result.rows[0]);
         })
