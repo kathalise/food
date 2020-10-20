@@ -282,22 +282,29 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
     res
 ) {
     console.log("HELLO FROM POST OFFER, posted by:", req.session.userId);
-    console.log("Input from Form:", req.body.title);
+    console.log("Input from Form / req.body:", req.body.title);
+    console.log("Input from Form / req.file:", req.file);
     console.log("Input from Form, category:", req.body.category);
     console.log("Input from Form, description:", req.body.description);
     console.log("Input from Form, address:", req.body.address);
-    console.log("Input from Form, file:", req.body.file);
+    // console.log("Input from Form, file:", req.file);
 
     console.log("imgLink: ", config.s3Url + req.file.filename);
 
     const offererId = req.session.userId;
     const title = req.body.title;
-    const category = req.body.category;
     const description = req.body.description;
+    const category = req.body.category;
     const address = req.body.address;
-    const file = req.body.file;
+    const imgurl = config.s3Url + req.file.filename;
 
-    // db.addOffer;
+    db.addOffer(offererId, title, description, category, address, imgurl)
+        .then((result) => {
+            console.log("Inside addOffer, result: ", result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("err in uploadOffer", err);
+        });
 });
 
 ////////////////////////////////////////////////

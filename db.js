@@ -61,9 +61,9 @@ module.exports.addOffer = (
     offerer_id,
     title,
     description,
-    imgurl,
     category,
-    address
+    address,
+    imgurl
 ) => {
     const q = `INSERT INTO offers (offerer_id, title, category, description, imgurl_offer, address) VALUES ($1, $2, $3, $4, $5, $6) 
     RETURNING offers.id`;

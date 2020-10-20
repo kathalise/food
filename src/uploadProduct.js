@@ -3,25 +3,28 @@ import React, { useState } from "react";
 import axios from "./axios";
 
 function useStatefulFields() {
-    const [values, setValues] = useState({});
+    const [values, setValues] = useState(new FormData());
 
     const handleChange = ({ target }) => {
-        setValues({
-            ...values,
-            [target.name]: target.value,
-            [target.file]: target.file,
+        setValues((formData) => {
+            if (target.files) {
+                formData.set(target.name, target.files[0]);
+            } else {
+                formData.set(target.name, target.value);
+            }
+            // console.log("FormData", formData);
+            return formData;
         });
-        console.log("Typing:", values);
     };
 
     return [values, handleChange];
-    console.log("values", values);
 }
 
 function useImputSubmit(url, values) {
     const [error, setError] = useState();
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log("Das ist das e", e);
 
         console.log("INSIDE useImputSubmit", values);
         axios
