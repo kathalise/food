@@ -14,6 +14,7 @@ import AllOffers from "./allOffers";
 import { Link } from "react-router-dom";
 import OffersByCategory from "./offersByCategory";
 import GetOtherUser from "./getOtherUser";
+import SendMessage from "./sendMessage";
 
 export default function App() {
     const [user, setUser] = useState("");
@@ -71,6 +72,11 @@ export default function App() {
                                     imgurl={user.imgurl || "/default.png"}
                                 />
                             )}
+                        />
+
+                        <Route
+                            path="/message/:otherId"
+                            component={SendMessage}
                         />
 
                         <Route

@@ -328,7 +328,7 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
 });
 
 app.get(`/get/offers/:offerId`, function (req, res) {
-    // console.log("HELLO FROM GET/OFFERS , req.params: ", req.params);
+    console.log("HELLO FROM GET/OFFERS , req.params: ", req.params);
     const offerId = req.params.offerId;
 
     db.getOffer(offerId)
@@ -370,7 +370,7 @@ app.get("/get/user/:otherUserId", function (req, res) {
     const otherUserId = req.params.otherUserId;
     db.getOtherUser(otherUserId)
         .then((result) => {
-            console.log("Result other user:", result.rows[0]);
+            // console.log("Result other user:", result.rows[0]);
             res.json(result.rows[0]);
         })
         .catch((err) => {
@@ -393,6 +393,17 @@ app.get(`/offers/by/:category`, (req, res) => {
             console.log("err", err);
         });
 });
+
+////////////////////////////////////////////////
+/* -------------   SEND MESSAGE   ----------- */
+////////////////////////////////////////////////
+
+app.post("/send/message", (req, res) => {
+    console.log("INSIDE /send/message/", req.params, req.body);
+
+    // db.addPrivateMassages(senderId, recipientId, productId, message;);
+});
+
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
+import SendMessage from "./sendMessage";
+import useModal from "./useModal";
+import Route from "react-router-dom";
 
 export default function GetOtherUser(otherUserId) {
     const [user, setUser] = useState([]);
+    const { isShowing, toggle } = useModal();
+
     useEffect(() => {
         console.log(
             "EFFECT IS RUNNING... otherUserId",
@@ -35,7 +40,9 @@ export default function GetOtherUser(otherUserId) {
                 <h2 style={{ textAlign: "center" }}>
                     {user.firstname} {user.lastname}
                 </h2>
-                <button>Message {user.firstname}</button>
+                {/* <button onClick={toggle}>Message {user.firstname}</button> */}
+
+                <SendMessage />
             </div>
         </>
     );

@@ -19,9 +19,9 @@ function useStatefulFields() {
 
     return [values, handleChange];
 }
-const closeMe = () => {
-    console.log("x clicked");
-};
+// const closeMe = () => {
+//     console.log("x clicked");
+// };
 
 function useInputSubmit(url, values) {
     const [error, setError] = useState();
@@ -56,9 +56,6 @@ export default function ChangeProfilePic({ isShowing, hide }) {
     if (!modalState) {
         return (
             <>
-                <div>
-                    {/* <button onClick={manageState}>SHOW MODAL</button> */}
-                </div>
                 <div className="uploader">
                     <h2
                         className="closeX" //onClick={closeMe}

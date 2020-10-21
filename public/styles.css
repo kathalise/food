@@ -157,6 +157,26 @@ Link:visited {
     color: blue;
 }
 
+.about-subpage {
+    /* background-image: url("/logo_fade.png");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    overflow-x: hidden; */
+    display: flex;
+    flex-direction: column;
+    /* background-color: lightblue; */
+    width: 80vw;
+    height: 400px;
+    /* border-radius: 50%; */
+    justify-content: center;
+    padding: 40px;
+    /* border: 20px solid lightblue; */
+    margin-top: 100px;
+    margin-bottom: 120px;
+}
+
 .about-project-background {
     height: 450px;
     margin: 0;
@@ -418,6 +438,23 @@ Link:visited {
 }
 
 .closeX:hover {
+    color: lightblue;
+    font-weight: 600;
+    /* transition: 0.5s; */
+    /* animation-name: spin;
+    animation-duration: 500ms;
+    animation-timing-function: linear; */
+}
+
+.closeY {
+    position: absolute;
+    top: 130px;
+    right: 80px;
+    /* float: right; */
+    cursor: pointer;
+}
+
+.closeY:hover {
     color: lightblue;
     font-weight: 600;
     /* transition: 0.5s; */

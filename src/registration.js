@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios.js";
+import { Link } from "react-router-dom";
 
 export default class Registration extends React.Component {
     constructor(props) {
@@ -40,6 +41,25 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div className="registration-form">
+                <div className="closeY">
+                    <Link
+                        style={{
+                            textDecoration: "none",
+                            color: "black",
+                        }}
+                        to={"/"}
+                    >
+                        <p
+                            style={{
+                                marginTop: "0",
+                                textAlign: "right",
+                                fontSize: "20px",
+                            }}
+                        >
+                            X
+                        </p>
+                    </Link>
+                </div>
                 <h3
                     style={{
                         alignSelf: "center",

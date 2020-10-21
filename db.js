@@ -101,3 +101,17 @@ module.exports.getOfferByCategory = (category) => {
     const params = [category];
     return db.query(q, params);
 };
+
+// -------------------  messages  ------------------- //
+module.exports.addPrivateMassages = (
+    senderId,
+    recipientId,
+    productId,
+    message
+) => {
+    `INSERT INTO messages (sender_id, recipient_id, product_id, message_text) 
+    VALUES ($1, $2, $3, $4) RETURNING messages.id`;
+
+    const params = [senderId, recipientId, productId, message];
+    return db.query(q, params);
+};

@@ -40,6 +40,25 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="registration-form">
+                <div className="closeY">
+                    <Link
+                        style={{
+                            textDecoration: "none",
+                            color: "black",
+                        }}
+                        to={"/"}
+                    >
+                        <p
+                            style={{
+                                marginTop: "0",
+                                textAlign: "right",
+                                fontSize: "20px",
+                            }}
+                        >
+                            X
+                        </p>
+                    </Link>
+                </div>
                 <h3 style={{ alignSelf: "center" }}>Login to your Account</h3>
                 {this.state.error && (
                     <div className="error">

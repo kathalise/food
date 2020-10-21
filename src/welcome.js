@@ -16,6 +16,7 @@ export default function Welcome() {
     return (
         <div>
             <div className="header-space"></div>
+
             <header>
                 <HashRouter>
                     <Link to="/">
@@ -35,6 +36,7 @@ export default function Welcome() {
                     </div>
                 </HashRouter>
             </header>
+
             <div className="layout-wrapper">
                 <div className="welcome-container">
                     <div className="router-welcome">
@@ -46,6 +48,7 @@ export default function Welcome() {
                             />
                             <Route path="/login" component={Login} />
                             <Route path="/reset" component={ResetPassword} />
+
                             <Route exact path="/about" component={About} />
                         </HashRouter>
                     </div>

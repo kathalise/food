@@ -77,6 +77,25 @@ export default class ResetPassword extends React.Component {
         if (this.state.current == 1) {
             elem = (
                 <div className="registration-form">
+                    <div className="closeY">
+                        <Link
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                            to={"/"}
+                        >
+                            <p
+                                style={{
+                                    marginTop: "0",
+                                    textAlign: "right",
+                                    fontSize: "20px",
+                                }}
+                            >
+                                X
+                            </p>
+                        </Link>
+                    </div>
                     <h3 style={{ alignSelf: "center" }}>Reset Your Password</h3>
                     {/* <p>Please enter Your email address:</p> */}
                     {/* <p>Please enter Your email address</p> */}
