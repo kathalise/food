@@ -12,6 +12,7 @@ import UploadProduct from "./uploadProduct";
 import AvailableOffers from "./availableOffers";
 import AllOffers from "./allOffers";
 import { Link } from "react-router-dom";
+import OffersByCategory from "./offersByCategory";
 
 export default function App() {
     const [user, setUser] = useState("");
@@ -64,27 +65,29 @@ export default function App() {
                                 <Profile
                                     firstname={user.firstname}
                                     lastname={user.lastname}
-                                    imgUrl={user.imgUrl || "/default.png"}
+                                    imgurl={user.imgurl || "/default.png"}
                                     // toggleUploader={this.toggleUploader}
                                 />
                             )}
                         />
-
                         <Route
                             exact
                             path="/upload"
                             render={() => <UploadProduct userId={user.id} />}
                         />
-
                         {/* <div className="available-product"> */}
                         <Route
                             exact
                             path="/offers/:offerId"
                             component={AvailableOffers}
                         />
-
-                        {/* <AvailableOffers /> */}
-                        {/* </div> */}
+                        <div className="all-product">
+                            <Route
+                                exact
+                                path="/by/:category"
+                                component={OffersByCategory}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="all-product">

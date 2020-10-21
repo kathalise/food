@@ -274,6 +274,31 @@ app.get("/user/logged-in", function (req, res) {
 });
 
 ////////////////////////////////////////////////
+/* -------------  PROFILE PIC   ------------- */
+////////////////////////////////////////////////
+app.post(
+    "/uploadProfilepic",
+    uploader.single("file"),
+    s3.upload,
+    (req, res) => {
+        console.log("INSIDE POST uploadProfilePic: ", req.session);
+        console.log("INSIDE POST req.file: ", req.file);
+
+        console.log("imgLink: ", config.s3Url + req.file.filename);
+        const userId = req.session.userId;
+        const imgurl = config.s3Url + req.file.filename;
+        db.uploadProfilePic(imgurl, userId)
+            .then((result) => {
+                console.log(result.rows[0]);
+                res.json(result.rows[0].imgurl);
+            })
+            .catch((err) => {
+                console.log("err", err);
+            });
+    }
+);
+
+////////////////////////////////////////////////
 /* --------------  POST OFFER   ------------- */
 ////////////////////////////////////////////////
 
@@ -336,6 +361,21 @@ app.get("/get/all-offers", function (req, res) {
         });
 });
 
+////////////////////////////////////////////////
+/* -------------    CATEGORIES    ----------- */
+////////////////////////////////////////////////
+app.get(`/offers/by/:category`, (req, res) => {
+    console.log("INSIDE /offers/:category", req.params);
+    const category = req.params.category;
+    db.getOfferByCategory(category)
+        .then((result) => {
+            console.log("RESULT:", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////

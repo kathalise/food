@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 export default function AvailableOffers(offerId) {
     const [offers, setOffers] = useState([]);
@@ -55,7 +56,17 @@ export default function AvailableOffers(offerId) {
                         />
                     </div>
                     <div className="available-product-detail">
-                        <p>#{offers.category}</p>
+                        <Link
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                            to={`/by/${offers.category}`}
+                            key={offers.category}
+                        >
+                            <p>#{offers.category}</p>
+                        </Link>
+
                         <p>
                             Posted {moment(offers.created_at_time).fromNow()} by{" "}
                             <strong>{offers.firstname}</strong>

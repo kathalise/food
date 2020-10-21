@@ -45,9 +45,10 @@ export default function UploadProduct() {
     const [handleSubmit, error] = useInputSubmit("/post/offer", values);
 
     return (
-        <>
-            <div className="offered-product">
-                <h2 style={{ textAlign: "center" }}>Share Your Item</h2>
+        <div className="uploader-container">
+            <div className="product-uploader">
+                <h2 style={{ textAlign: "center" }}>Upload Item</h2>
+                <img style={{ height: "100px" }} src={"/milk.png"} />
                 <form onChange={handleChange}>
                     <input
                         key={1}
@@ -79,7 +80,7 @@ export default function UploadProduct() {
                     <textarea
                         key={3}
                         type="text"
-                        placeholder="Information about the item, (e.g. condition, expiry date)"
+                        placeholder="Information about the item, (e.g. condition, expiry date, to be picked up by)"
                         name="description"
                         rows="7"
                         maxLength="1000"
@@ -100,6 +101,6 @@ export default function UploadProduct() {
                     <button onClick={handleSubmit}>Upload</button>
                 </form>
             </div>
-        </>
+        </div>
     );
 }

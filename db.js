@@ -31,6 +31,12 @@ module.exports.addNewPassword = (email, password) => {
     const params = [email, password];
     return db.query(q, params);
 };
+
+module.exports.uploadProfilePic = (imgUrl, id) => {
+    const q = `UPDATE users SET imgurl = $1 WHERE id = $2 RETURNING imgurl`;
+    const params = [imgUrl, id];
+    return db.query(q, params);
+};
 // ------------------- password_reset_codes table ------------------- //
 
 module.exports.addResetCode = (email, code) => {
@@ -81,5 +87,11 @@ module.exports.getOffer = (id) => {
     // const q = `SELECT * FROM offers WHERE id = $1`;
     const q = `SELECT * FROM offers INNER JOIN users ON users.id= offerer_id WHERE offers.id = $1;`;
     const params = [id];
+    return db.query(q, params);
+};
+
+module.exports.getOfferByCategory = (category) => {
+    const q = `SELECT * FROM offers WHERE category=$1;`;
+    const params = [category];
     return db.query(q, params);
 };

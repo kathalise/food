@@ -3,48 +3,38 @@ import axios from "./axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-export default function AllOffers() {
-    const [items, setItems] = useState([]);
+export default function OffersByCategory(category) {
+    const [itemsFiltered, setItemsFiltered] = useState();
     useEffect(() => {
-        console.log("EFFECT IS RUNNING... AllOffers");
+        console.log(
+            "EFFECT IS RUNNING... OffersByCategory",
+            category.match.params.category
+        );
 
         (async () => {
             try {
-                const { data } = await axios.get("/get/all-offers");
-                console.log("res from db /get/all-offers, DATA: ", data);
+                const { data } = await axios.get(
+                    `/offers/by/${category.match.params.category}`,
+                    []
+                );
+                console.log("res from db /offers/by/${category}, DATA: ", data);
 
-                setItems(data);
-                console.log("items", items);
+                setItemsFiltered(data);
+                console.log("data.title", data[0].title);
             } catch (err) {
                 console.log("err: ", err);
             }
         })();
     }, []);
+
     return (
         <>
-            <h1
-                style={{
-                    textAlign: "center",
-                }}
-            >
-                AVAILABLE OFFERS
-            </h1>
             <div className="all-offers-container">
-                {items &&
-                    items.map((item, i) => {
+                {itemsFiltered &&
+                    itemsFiltered.map((item, i) => {
                         return (
                             <div key={i} className="offers-card">
-                                <Link
-                                    style={{
-                                        textDecoration: "none",
-                                        color: "black",
-                                    }}
-                                    to={`/by/${item.category}`}
-                                    key={item.category}
-                                >
-                                    <h3>#{item.category}</h3>
-                                </Link>
-
+                                <h3>#{item.category}</h3>
                                 <h2 stype={{ margin: "10px" }}>{item.title}</h2>
                                 <Link to={`/offers/${item.id}`} key={item.id}>
                                     <img
