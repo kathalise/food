@@ -8,6 +8,9 @@ import { Link } from "react-router-dom";
 import Header from "./header.js";
 import Footer from "./footer.js";
 import AllOffers from "./allOffers";
+import AvailableOffers from "./availableOffers";
+import OffersByCategory from "./offersByCategory";
+import About from "./about.js";
 
 export default function Welcome() {
     return (
@@ -43,24 +46,43 @@ export default function Welcome() {
                             />
                             <Route path="/login" component={Login} />
                             <Route path="/reset" component={ResetPassword} />
+                            <Route exact path="/about" component={About} />
                         </HashRouter>
                     </div>
-                    <div className="about-project-background">
-                        <div className="about-project">
-                            <h2>
-                                Hey You, are you ready to put an end to
-                                foodwaste?
-                            </h2>
-                            <a href="/">
-                                Here you can find out more about the project
-                            </a>
+                    <HashRouter>
+                        <div className="about-project-background">
+                            <div className="about-project">
+                                <h2>
+                                    Hey You, are you ready to put an end to
+                                    foodwaste?
+                                </h2>
+                                <Link to="/about">
+                                    Here you can find out more about the project
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    </HashRouter>
                     <HashRouter>
                         <>
                             {/* <div className="all-offers-container"> */}
                             <Route exact path="/" component={AllOffers} />
                             {/* </div> */}
+
+                            <Route
+                                exact
+                                path="/offers/:offerId"
+                                component={AvailableOffers}
+                            />
+                            <div
+                                style={{ marginTop: "40px" }}
+                                className="all-product"
+                            >
+                                <Route
+                                    exact
+                                    path="/by/:category"
+                                    component={OffersByCategory}
+                                />
+                            </div>
                         </>
                     </HashRouter>
                 </div>

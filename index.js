@@ -328,12 +328,12 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
 });
 
 app.get(`/get/offers/:offerId`, function (req, res) {
-    console.log("HELLO FROM GET/OFFERS , req.params: ", req.params);
+    // console.log("HELLO FROM GET/OFFERS , req.params: ", req.params);
     const offerId = req.params.offerId;
 
     db.getOffer(offerId)
         .then((result) => {
-            console.log("result.rows", result.rows[0]);
+            // console.log("result.rows", result.rows[0]);
             if (result.rows[0]) {
                 // console.log("RESULT: ", result.rows[0]);
                 const offerInfo = result.rows[0];
@@ -350,7 +350,7 @@ app.get(`/get/offers/:offerId`, function (req, res) {
 /* -------------  GET ALL OFFERS  ----------- */
 ////////////////////////////////////////////////
 app.get("/get/all-offers", function (req, res) {
-    console.log("INSIDE GET ALL OFFERS");
+    // console.log("INSIDE GET ALL OFFERS");
     db.getAllOffers()
         .then((result) => {
             console.log("result:", result.rows);
@@ -362,10 +362,27 @@ app.get("/get/all-offers", function (req, res) {
 });
 
 ////////////////////////////////////////////////
+/* -------------  GET OTHER USER  ----------- */
+////////////////////////////////////////////////
+
+app.get("/get/user/:otherUserId", function (req, res) {
+    console.log("TRYING TO GET OTHER USERID", req.params);
+    const otherUserId = req.params.otherUserId;
+    db.getOtherUser(otherUserId)
+        .then((result) => {
+            console.log("Result other user:", result.rows[0]);
+            res.json(result.rows[0]);
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
+
+////////////////////////////////////////////////
 /* -------------    CATEGORIES    ----------- */
 ////////////////////////////////////////////////
 app.get(`/offers/by/:category`, (req, res) => {
-    console.log("INSIDE /offers/:category", req.params);
+    // console.log("INSIDE /offers/:category", req.params);
     const category = req.params.category;
     db.getOfferByCategory(category)
         .then((result) => {

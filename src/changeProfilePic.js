@@ -43,27 +43,53 @@ function useInputSubmit(url, values) {
     return [handleSubmit, error];
 }
 
-export default function ChangeProfilePic() {
+export default function ChangeProfilePic({ isShowing, hide }) {
     const [values, handleChange] = useStatefulFields();
     const [handleSubmit, error] = useInputSubmit("/uploadProfilepic", values);
-    return (
-        <>
-            <div className="uploader">
-                <h2 className="closeX" onClick={closeMe}>
-                    x
-                </h2>
-                <form onChange={handleChange} style={{ paddingTop: "30px" }}>
-                    <input
-                        key={5}
-                        type="file"
-                        name="file"
-                        placeholder="Upload an Image"
-                        accept="image/*"
-                    />
-                    <button onClick={handleSubmit}>Upload</button>
-                </form>
+    const [modalState, setModalState] = useState(true);
+
+    const manageState = () => {
+        setModalState(!modalState);
+        console.log("changing state");
+    };
+
+    if (!modalState) {
+        return (
+            <>
+                <div>
+                    {/* <button onClick={manageState}>SHOW MODAL</button> */}
+                </div>
+                <div className="uploader">
+                    <h2
+                        className="closeX" //onClick={closeMe}
+                        onClick={manageState}
+                    >
+                        x
+                    </h2>
+                    <form
+                        onChange={handleChange}
+                        style={{ paddingTop: "30px" }}
+                    >
+                        <input
+                            key={5}
+                            type="file"
+                            name="file"
+                            placeholder="Upload an Image"
+                            accept="image/*"
+                        />
+                        <button onClick={handleSubmit}>Upload</button>
+                    </form>
+                </div>
+                <div className="overlay"></div>
+            </>
+        );
+    } else {
+        return (
+            <div className="reg-buttons button">
+                <button className="button-profile-pic" onClick={manageState}>
+                    Upload picture
+                </button>
             </div>
-            <div className="overlay"></div>
-        </>
-    );
+        );
+    }
 }

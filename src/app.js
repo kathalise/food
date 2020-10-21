@@ -13,9 +13,11 @@ import AvailableOffers from "./availableOffers";
 import AllOffers from "./allOffers";
 import { Link } from "react-router-dom";
 import OffersByCategory from "./offersByCategory";
+import GetOtherUser from "./getOtherUser";
 
 export default function App() {
     const [user, setUser] = useState("");
+
     useEffect(() => {
         console.log("EFFECT IS WORKING", user);
         (async () => {
@@ -29,6 +31,7 @@ export default function App() {
             }
         })();
     }, []);
+
     return (
         <BrowserRouter>
             <div className="app-container">
@@ -66,9 +69,13 @@ export default function App() {
                                     firstname={user.firstname}
                                     lastname={user.lastname}
                                     imgurl={user.imgurl || "/default.png"}
-                                    // toggleUploader={this.toggleUploader}
                                 />
                             )}
+                        />
+
+                        <Route
+                            path="/user/:otherUserId"
+                            component={GetOtherUser}
                         />
                         <Route
                             exact

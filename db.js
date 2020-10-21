@@ -37,6 +37,12 @@ module.exports.uploadProfilePic = (imgUrl, id) => {
     const params = [imgUrl, id];
     return db.query(q, params);
 };
+
+module.exports.getOtherUser = (otherUserId) => {
+    const q = `SELECT * FROM users WHERE id = $1`;
+    const params = [otherUserId];
+    return db.query(q, params);
+};
 // ------------------- password_reset_codes table ------------------- //
 
 module.exports.addResetCode = (email, code) => {

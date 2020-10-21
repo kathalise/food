@@ -39,7 +39,7 @@ export default function AvailableOffers(offerId) {
     if (offers.noOfferId) {
         return (
             <div>
-                <h1>Oops.. seems like this user does not exist!</h1>
+                <h1>Oops.. seems like this item does not exist!</h1>
             </div>
         );
     } else {
@@ -68,14 +68,24 @@ export default function AvailableOffers(offerId) {
                         </Link>
 
                         <p>
-                            Posted {moment(offers.created_at_time).fromNow()} by{" "}
-                            <strong>{offers.firstname}</strong>
+                            Posted {moment(offers.created_at_time).fromNow()} by
                         </p>
+                        <Link
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                            to={`/user/${offers.offerer_id}`}
+                        >
+                            <p>
+                                <strong>{offers.firstname}</strong>
+                            </p>
+                        </Link>
                         <br></br>
                         <br></br>
                         <p>{offers.description}</p>
 
-                        <button>Contact Offerer</button>
+                        <button>Want to pick it up</button>
                     </div>
                 </div>
             </>
