@@ -3,8 +3,10 @@ import axios from "./axios";
 import SendMessage from "./sendMessage";
 import useModal from "./useModal";
 import Route from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function GetOtherUser(otherUserId) {
+    let history = useHistory();
     const [user, setUser] = useState([]);
     const { isShowing, toggle } = useModal();
 
@@ -20,7 +22,11 @@ export default function GetOtherUser(otherUserId) {
                     `/get/user/${otherUserId.match.params.otherUserId}`
                 );
                 console.log("res from db DATA other user: ", data);
-                setUser(data);
+                if (data.same) {
+                    history.push("/myProfile");
+                } else {
+                    setUser(data);
+                }
             } catch (err) {
                 console.log("err: ", err);
             }
@@ -35,15 +41,14 @@ export default function GetOtherUser(otherUserId) {
                     // className={imgClassName}
                     src={user.imgurl}
                     alt={`${user.firstname} ${user.lastname}`}
-                    style={{ height: "250px" }}
+                    style={{ height: "400px" }}
                 />
                 <h2 style={{ textAlign: "center" }}>
                     {user.firstname} {user.lastname}
                 </h2>
                 {/* <button onClick={toggle}>Message {user.firstname}</button> */}
-
-                <SendMessage otherId={user.id} />
             </div>
+            <SendMessage otherId={user.id} firstname={user.firstname} />
         </>
     );
 }

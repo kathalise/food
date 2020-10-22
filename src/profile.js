@@ -1,10 +1,33 @@
-import React, { useState } from "react";
-import Bio from "./bio";
-// import axios from "./axios";
+import React, { useState, useEffect } from "react";
+// import Bio from "./bio";
+import axios from "./axios";
 import ChangeProfilePic from "./changeProfilePic";
 import useModal from "./useModal";
+import Message from "./message";
+import SendMessage from "./sendMessage";
 
-export default function Profile({ firstname, lastname, imgurl, imgClassName }) {
+export default function Profile({
+    // firstname,
+    // lastname,
+    imgurl,
+    // imgClassName,
+    // userId,
+}) {
+    const [user, setUser] = useState("");
+
+    useEffect(() => {
+        console.log("EFFECT IS WORKING");
+        (async () => {
+            try {
+                const { data } = await axios.get("/user/logged-in", {});
+                console.log("res from db in app: ", data);
+                console.log(("data.id", data.id));
+                setUser(data);
+            } catch (err) {
+                console.log("err: ", err);
+            }
+        })();
+    }, []);
     // const [values, handleChange] = useStatefulFields();
     // const [handleSubmit, error] = useInputSubmit("/uploadProfilepic", values);
     // useStatefulFields();
@@ -17,19 +40,18 @@ export default function Profile({ firstname, lastname, imgurl, imgClassName }) {
                 {/* <h1>Hey {firstname} !</h1> */}
                 <img
                     onClick={toggle}
-                    className={imgClassName}
+                    // className={imgClassName}
                     src={imgurl}
-                    alt={`${firstname} ${lastname}`}
-                    style={{ height: "250px" }}
+                    alt={`${user.firstname} ${user.lastname}`}
+                    style={{ height: "400px" }}
                 />
                 <h2>
-                    {firstname} {lastname}
+                    {user.firstname} {user.lastname}
                 </h2>
-                <Bio />
-
-                <button>Update Bio</button>
+                {/* <Bio /> */}
             </div>
             <ChangeProfilePic />
+            <Message userId={user.id} />
         </>
     );
 }

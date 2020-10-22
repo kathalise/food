@@ -374,14 +374,21 @@ app.get("/get/all-offers", function (req, res) {
 app.get("/get/user/:otherUserId", function (req, res) {
     console.log("TRYING TO GET OTHER USERID", req.params);
     const otherUserId = req.params.otherUserId;
-    if (!req.session.userId) {
-        console.log("YOU GOTTA LOG IN");
-        res.redirect("/login");
+    const userId = req.session.userId;
+
+    if (userId == otherUserId) {
+        // console.log("THE SAME!");
+        res.json({ same: true });
     } else {
         db.getOtherUser(otherUserId)
             .then((result) => {
                 // console.log("Result other user:", result.rows[0]);
-                res.json(result.rows[0]);
+                if (result.rows[0]) {
+                    // console.log("RESULT: ", result.rows[0]);
+                    res.json(result.rows[0]);
+                } else if (result.rows[0] == undefined) {
+                    res.json({ noUserId: true });
+                }
             })
             .catch((err) => {
                 console.log("err", err);
@@ -413,10 +420,9 @@ app.post("/message/user/:otherId", (req, res) => {
     console.log("INSIDE /send/message/", req.params, req.body);
     const senderId = req.session.userId;
     const recipientId = req.params.otherId;
-    const productId = req.body.title;
     const message = req.body.message;
 
-    db.addPrivateMassages(senderId, recipientId, productId, message)
+    db.addPrivateMassages(senderId, recipientId, message)
         .then((result) => {
             console.log("Result:", result);
             res.json({ success: true });
@@ -426,6 +432,42 @@ app.post("/message/user/:otherId", (req, res) => {
         });
 });
 
+////////////////////////////////////////////////
+/* -------------   SEND MESSAGE  II --------- */
+////////////////////////////////////////////////
+
+app.post("/message/user", (req, res) => {
+    console.log("INSIDE /send/message/", req.params, req.body);
+    const senderId = req.session.userId;
+    const recipientId = req.body.id;
+    const message = req.body.message;
+
+    db.addPrivateMassages(senderId, recipientId, message)
+        .then((result) => {
+            console.log("Result:", result);
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
+
+////////////////////////////////////////////////
+/* -------------   SHOW MESSAGE   ----------- */
+////////////////////////////////////////////////
+app.get("/get/message", function (req, res) {
+    console.log("INSIDE SHOW MSG", req.session.userId);
+
+    const userId = req.session.userId;
+    db.getPrivateMassages(userId)
+        .then((result) => {
+            console.log("result", result.rows);
+            res.json(result.rows);
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
 ////////////////////////////////////////////////
 /* --------------    LOG OUT    ------------- */
 ////////////////////////////////////////////////

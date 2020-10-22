@@ -85,7 +85,16 @@ export default function AvailableOffers(offerId) {
                         <br></br>
                         <p>{offers.description}</p>
 
-                        <button>Want to pick it up</button>
+                        <Link
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                            }}
+                            to={`/user/${offers.offerer_id}`}
+                            key={offers.id}
+                        >
+                            <button>Want to pick it up</button>
+                        </Link>
                     </div>
                 </div>
             </>

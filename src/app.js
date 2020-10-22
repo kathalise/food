@@ -15,18 +15,19 @@ import { Link } from "react-router-dom";
 import OffersByCategory from "./offersByCategory";
 import GetOtherUser from "./getOtherUser";
 import SendMessage from "./sendMessage";
+import Message from "./message";
 
 export default function App() {
     const [user, setUser] = useState("");
 
     useEffect(() => {
-        console.log("EFFECT IS WORKING", user);
+        console.log("EFFECT IS WORKING");
         (async () => {
             try {
                 const { data } = await axios.get("/user/logged-in", {});
-                console.log("res from db: ", data);
-                setUser(data);
+                console.log("res from db in app: ", data);
                 console.log(("data.id", data.id));
+                setUser(data);
             } catch (err) {
                 console.log("err: ", err);
             }
@@ -70,15 +71,17 @@ export default function App() {
                                     firstname={user.firstname}
                                     lastname={user.lastname}
                                     imgurl={user.imgurl || "/default.png"}
+                                    userId={user.id}
                                 />
                             )}
                         />
 
                         <Route
                             path="/message/:otherId"
-                            component={SendMessage}
+                            render={() => (
+                                <SendMessage SendMessage userId={user.id} />
+                            )}
                         />
-
                         <Route
                             path="/user/:otherUserId"
                             component={GetOtherUser}

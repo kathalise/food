@@ -103,15 +103,20 @@ module.exports.getOfferByCategory = (category) => {
 };
 
 // -------------------  messages  ------------------- //
-module.exports.addPrivateMassages = (
-    senderId,
-    recipientId,
-    productId,
-    message
-) => {
-    const q = `INSERT INTO messages (sender_id, recipient_id, product_id, message_text) 
-    VALUES ($1, $2, $3, $4) RETURNING messages.id`;
+module.exports.addPrivateMassages = (senderId, recipientId, message) => {
+    const q = `INSERT INTO messages (sender_id, recipient_id, message_text) 
+    VALUES ($1, $2, $3) RETURNING messages.id`;
 
-    const params = [senderId, recipientId, productId, message];
+    const params = [senderId, recipientId, message];
+    return db.query(q, params);
+};
+
+module.exports.getPrivateMassages = (userId) => {
+    const q = `SELECT * FROM messages INNER JOIN users ON (users.id=sender_id)
+     WHERE (sender_id=$1) 
+    OR (recipient_id=$1)
+    ORDER BY msg_created_at DESC`;
+
+    const params = [userId];
     return db.query(q, params);
 };
