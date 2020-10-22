@@ -42,7 +42,7 @@ export default function GetOtherUser(otherUserId) {
                 </h2>
                 {/* <button onClick={toggle}>Message {user.firstname}</button> */}
 
-                <SendMessage />
+                <SendMessage otherId={user.id} />
             </div>
         </>
     );

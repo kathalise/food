@@ -27,7 +27,7 @@ export default function Profile({ firstname, lastname, imgurl, imgClassName }) {
                 </h2>
                 <Bio />
 
-                <button>Message {firstname}</button>
+                <button>Update Bio</button>
             </div>
             <ChangeProfilePic />
         </>

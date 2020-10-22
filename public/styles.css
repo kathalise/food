@@ -30,6 +30,8 @@ header {
     justify-content: space-between;
     position: fixed;
     z-index: 10;
+    border-bottom: 0.5px lightblue solid;
+    box-shadow: 10px 2px 8px 2px lightblue;
 }
 
 .reg-buttons {
@@ -181,7 +183,7 @@ Link:visited {
     height: 450px;
     margin: 0;
     /* background-color: lightpink; */
-    background-image: url("/fridge.jpg");
+    background-image: url("/fridge.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
@@ -391,6 +393,28 @@ Link:visited {
     flex-wrap: wrap;
 }
 
+/* -------------- UPLOADER PROFILE PIC --------------------- */
+
+.uploader-profilepic {
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: 2px 4px 2px 0 #02738f;
+    padding: 5px 5px;
+    margin: 5px 10px;
+    background-color: white;
+    outline: none;
+}
+
+.uploader-profilepic:hover {
+    outline: none;
+    background-color: #cfe2e7;
+    /* box-shadow: inset 3px 4px 0.5px #020860; */
+}
+.uploader-profilepic:active {
+    outline: none;
+    background-color: #02738f;
+    box-shadow: inset 3px 4px 0.5px #020860;
+}
 .uploader {
     /* opacity: 0;
     pointer-events: none; */
@@ -417,14 +441,14 @@ Link:visited {
     border: lightblue 0.5px solid;
 }
 
-/* .overlay {
+.overlay {
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0;
     background: rgba(0, 0, 0, 0.452);
     z-index: 1;
-} */
+}
 
 .closeX {
     position: absolute;
@@ -476,7 +500,7 @@ Link:visited {
 
 /* --------------------- FOOTER--------------------- */
 footer {
-    /* height: 120px; */
+    height: 120px;
     /* border: 2px red solid; */
     background-color: rgba(173, 216, 230, 0.527);
     padding: 5px;

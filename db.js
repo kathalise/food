@@ -109,7 +109,7 @@ module.exports.addPrivateMassages = (
     productId,
     message
 ) => {
-    `INSERT INTO messages (sender_id, recipient_id, product_id, message_text) 
+    const q = `INSERT INTO messages (sender_id, recipient_id, product_id, message_text) 
     VALUES ($1, $2, $3, $4) RETURNING messages.id`;
 
     const params = [senderId, recipientId, productId, message];

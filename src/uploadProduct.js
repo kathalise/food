@@ -30,7 +30,11 @@ function useInputSubmit(url, values) {
         axios
             .post(url, values)
             .then(({ data }) => {
-                console.log("data:", data);
+                // console.log("data:", data);
+                if (data.success) {
+                    location.replace("/");
+                    console.log("UPLOAD SUCCESSFUL");
+                }
             })
             .catch((err) => {
                 console.log("error in axios post /", err);

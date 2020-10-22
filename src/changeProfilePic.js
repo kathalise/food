@@ -34,6 +34,9 @@ function useInputSubmit(url, values) {
             .post(url, values)
             .then(({ data }) => {
                 console.log("data:", data);
+                if (data) {
+                    location.replace("/myProfile");
+                }
             })
             .catch((err) => {
                 console.log("error in axios post /", err);
@@ -63,6 +66,7 @@ export default function ChangeProfilePic({ isShowing, hide }) {
                     >
                         x
                     </h2>
+
                     <form
                         onChange={handleChange}
                         style={{ paddingTop: "30px" }}
@@ -74,7 +78,12 @@ export default function ChangeProfilePic({ isShowing, hide }) {
                             placeholder="Upload an Image"
                             accept="image/*"
                         />
-                        <button onClick={handleSubmit}>Upload</button>
+                        <button
+                            className="uploader-profilepic"
+                            onClick={handleSubmit}
+                        >
+                            Upload Picture
+                        </button>
                     </form>
                 </div>
                 <div className="overlay"></div>

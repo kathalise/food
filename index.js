@@ -88,12 +88,12 @@ if (process.env.NODE_ENV != "production") {
 app.get("/welcome", function (req, res) {
     console.log("in get /welcome: ", req.session);
     // if user is logged in
-    // if (req.session.userId) {
-    //     console.log("Hallo MerleMerle");
-    //     res.redirect("/");
-    // } else {
-    res.sendFile(__dirname + "/index.html");
-    // }
+    if (req.session.userId) {
+        console.log("Hallo MerleMerle");
+        res.redirect("/");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
 });
 
 ////////////////////////////////////////////////
@@ -261,16 +261,21 @@ app.post("/reset-code", (req, res) => {
 app.get("/user/logged-in", function (req, res) {
     console.log("HELLO USER PAGE! userId: ", req.session.userId);
     const userId = req.session.userId;
-    db.getUserInfo(userId)
-        .then((result) => {
-            console.log("result: ", result.rows[0]);
-            const userInfo = result.rows[0];
+    if (!req.session.userId) {
+        console.log("YOU GOTTA LOG IN");
+        res.sendFile(__dirname + "/index.html");
+    } else {
+        db.getUserInfo(userId)
+            .then((result) => {
+                console.log("result: ", result.rows[0]);
+                const userInfo = result.rows[0];
 
-            res.json(userInfo);
-        })
-        .catch((err) => {
-            console.log("err in GET /user", err);
-        });
+                res.json(userInfo);
+            })
+            .catch((err) => {
+                console.log("err in GET /user", err);
+            });
+    }
 });
 
 ////////////////////////////////////////////////
@@ -321,6 +326,7 @@ app.post("/post/offer", uploader.single("file"), s3.upload, function (
     db.addOffer(offererId, title, category, description, imgurl, address)
         .then((result) => {
             console.log("Inside addOffer, result: ", result.rows[0]);
+            res.json({ success: true });
         })
         .catch((err) => {
             console.log("err in uploadOffer", err);
@@ -368,14 +374,19 @@ app.get("/get/all-offers", function (req, res) {
 app.get("/get/user/:otherUserId", function (req, res) {
     console.log("TRYING TO GET OTHER USERID", req.params);
     const otherUserId = req.params.otherUserId;
-    db.getOtherUser(otherUserId)
-        .then((result) => {
-            // console.log("Result other user:", result.rows[0]);
-            res.json(result.rows[0]);
-        })
-        .catch((err) => {
-            console.log("err", err);
-        });
+    if (!req.session.userId) {
+        console.log("YOU GOTTA LOG IN");
+        res.redirect("/login");
+    } else {
+        db.getOtherUser(otherUserId)
+            .then((result) => {
+                // console.log("Result other user:", result.rows[0]);
+                res.json(result.rows[0]);
+            })
+            .catch((err) => {
+                console.log("err", err);
+            });
+    }
 });
 
 ////////////////////////////////////////////////
@@ -398,10 +409,21 @@ app.get(`/offers/by/:category`, (req, res) => {
 /* -------------   SEND MESSAGE   ----------- */
 ////////////////////////////////////////////////
 
-app.post("/send/message", (req, res) => {
+app.post("/message/user/:otherId", (req, res) => {
     console.log("INSIDE /send/message/", req.params, req.body);
+    const senderId = req.session.userId;
+    const recipientId = req.params.otherId;
+    const productId = req.body.title;
+    const message = req.body.message;
 
-    // db.addPrivateMassages(senderId, recipientId, productId, message;);
+    db.addPrivateMassages(senderId, recipientId, productId, message)
+        .then((result) => {
+            console.log("Result:", result);
+            res.json({ success: true });
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
 });
 
 ////////////////////////////////////////////////
