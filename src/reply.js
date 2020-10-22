@@ -81,7 +81,7 @@ export default function Reply() {
                         }}
                         onClick={handleSubmit}
                     >
-                        Reply
+                        Send
                     </button>
                 </div>
             </form>

@@ -47,12 +47,28 @@ function useInputSubmit(url, values) {
 export default function UploadProduct() {
     const [values, handleChange] = useStatefulFields();
     const [handleSubmit, error] = useInputSubmit("/post/offer", values);
+    // const [modalState, setModalState] = useState(true);
+
+    const manageState = () => {
+        location.replace("/");
+        console.log("changing state");
+    };
 
     return (
         <div className="uploader-container">
             <div className="product-uploader">
                 <h2 style={{ textAlign: "center" }}>Upload Item</h2>
                 <img style={{ height: "100px" }} src={"/milk.png"} />
+                <h3
+                    style={{
+                        top: "125px",
+                        right: "500px",
+                    }}
+                    className="closeY"
+                    onClick={manageState}
+                >
+                    X
+                </h3>
                 <form onChange={handleChange}>
                     <input
                         key={1}

@@ -11,6 +11,7 @@ import AllOffers from "./allOffers";
 import AvailableOffers from "./availableOffers";
 import OffersByCategory from "./offersByCategory";
 import About from "./about.js";
+import Leaflet from "./leaflet";
 
 export default function Welcome() {
     return (

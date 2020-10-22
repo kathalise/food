@@ -25,9 +25,10 @@ export default function AllOffers() {
             <h1
                 style={{
                     textAlign: "center",
+                    marginBottom: "30px",
                 }}
             >
-                AVAILABLE OFFERS
+                Up For Grabs
             </h1>
             <div className="all-offers-container">
                 {items &&

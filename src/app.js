@@ -16,6 +16,7 @@ import OffersByCategory from "./offersByCategory";
 import GetOtherUser from "./getOtherUser";
 import SendMessage from "./sendMessage";
 import Message from "./message";
+import About from "./about.js";
 
 export default function App() {
     const [user, setUser] = useState("");
@@ -42,15 +43,6 @@ export default function App() {
                     <div className="reg-buttons">
                         <button>
                             <Link
-                                to="/myProfile"
-                                style={{ textDecoration: "none" }}
-                            >
-                                {" "}
-                                My Profile{" "}
-                            </Link>
-                        </button>
-                        <button>
-                            <Link
                                 to="/upload"
                                 style={{ textDecoration: "none" }}
                             >
@@ -58,6 +50,16 @@ export default function App() {
                                 Post Offer{" "}
                             </Link>
                         </button>
+                        <button>
+                            <Link
+                                to="/myProfile"
+                                style={{ textDecoration: "none" }}
+                            >
+                                {" "}
+                                My Profile{" "}
+                            </Link>
+                        </button>
+
                         <Logout />
                     </div>
                 </header>
@@ -108,6 +110,7 @@ export default function App() {
                 </div>
                 <div className="all-product">
                     <Route exact path="/" component={AllOffers} />
+                    <Route exact path="/about" component={About} />
                 </div>
                 <footer>
                     <Footer />
