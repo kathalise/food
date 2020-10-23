@@ -273,10 +273,18 @@ Link:visited {
     box-shadow: inset 3px 4px 0.5px #020860;
 }
 
+.overlay-msgcontainer {
+    height: 99%;
+    width: 99%;
+    position: absolute;
+    top: 0;
+    background: rgba(233, 239, 240, 0.568);
+    z-index: 1;
+}
 .msg-container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 350px;
     height: 75vh;
     margin: 20px;
     background-color: rgba(173, 216, 230, 0.747);
@@ -285,6 +293,7 @@ Link:visited {
     padding: 20px;
     box-shadow: 2px 6px 2px 0 rgba(37, 37, 37, 0.28);
     overflow-y: scroll;
+    z-index: 2;
 }
 
 ::-webkit-scrollbar {
@@ -542,7 +551,19 @@ textarea:focus {
 .button-profile-pic:hover {
     opacity: 0.8;
 }
+/* -------------OFFERS ON USER PROFILE--------------------- */
 
+.users-offers-container {
+    width: 450px;
+    height: 500px;
+    margin-right: 30px;
+    overflow-y: scroll;
+}
+.offers-userprofile {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
 /* --------------------- FOOTER--------------------- */
 footer {
     height: 120px;

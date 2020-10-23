@@ -59,31 +59,35 @@ export default function SendMessage({ otherId, firstname }) {
 
     if (!modalState) {
         return (
-            <div
-                style={{ border: "none", marginBottom: "0" }}
-                className="user-profile"
-            >
-                <div className="uploader-container">
-                    <div className="product-uploader">
-                        <h2 style={{ textAlign: "center" }}>
-                            Message To {firstname}
-                        </h2>
-                        <form onChange={handleChange}>
-                            <textarea
-                                key={3}
-                                type="text"
-                                placeholder="Your message"
-                                name="message"
-                                rows="7"
-                                maxLength="1000"
-                            />
+            <>
+                <div
+                    style={{ border: "none", padding: "5px", zIndex: 2 }}
+                    className="user-profile"
+                >
+                    <div className="uploader-container">
+                        <div className="product-uploader">
+                            <h2 style={{ textAlign: "center" }}>
+                                Message To {firstname}
+                            </h2>
 
-                            <button onClick={handleSubmit}>Send</button>
-                            <button onClick={manageState}>Cancel</button>
-                        </form>
+                            <form onChange={handleChange}>
+                                <textarea
+                                    key={3}
+                                    type="text"
+                                    placeholder="Your message"
+                                    name="message"
+                                    rows="7"
+                                    maxLength="1000"
+                                />
+
+                                <button onClick={handleSubmit}>Send</button>
+                                <button onClick={manageState}>Cancel</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div className="overlay-msgcontainer"></div>
+            </>
         );
     } else {
         return (
@@ -92,7 +96,7 @@ export default function SendMessage({ otherId, firstname }) {
                     style={{
                         border: "none",
                         justifyContent: "flex-end",
-                        paddingBottom: 0,
+                        paddingBottom: "0",
                     }}
                     className="user-profile"
                 >

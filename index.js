@@ -368,6 +368,49 @@ app.get("/get/all-offers", function (req, res) {
 });
 
 ////////////////////////////////////////////////
+/* ------ GET OFFER BY OTHER USER ----------- */
+////////////////////////////////////////////////
+app.get("/users/offers/:otherId", function (req, res) {
+    // console.log("INSIDE GET OFFER BY USERID: ", req.session.userId);
+    console.log("INSIDE GET OFFER BY USERID: ", req.params.otherId);
+    const otherId = req.params.otherId;
+    db.getUsersOffers(otherId)
+        .then((result) => {
+            if (result.rows.length == 0) {
+                console.log("USER HAS NO ITEMS");
+                res.json({ success: false });
+            } else {
+                console.log("result", result);
+                res.json(result.rows);
+            }
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
+
+////////////////////////////////////////////////
+/* ----- GET OFFER LOGGED IN USER ----------- */
+////////////////////////////////////////////////
+app.get("/users/offers", function (req, res) {
+    console.log("INSIDE GET OFFER BY USERID: ", req.session.userId);
+
+    const userId = req.session.userId;
+    db.getUsersOffers(userId)
+        .then((result) => {
+            if (result.rows.length == 0) {
+                console.log("USER HAS NO ITEMS");
+                res.json({ success: false });
+            } else {
+                console.log("result", result);
+                res.json(result.rows);
+            }
+        })
+        .catch((err) => {
+            console.log("err", err);
+        });
+});
+////////////////////////////////////////////////
 /* -------------  GET OTHER USER  ----------- */
 ////////////////////////////////////////////////
 

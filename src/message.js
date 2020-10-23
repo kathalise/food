@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
 // import useModal from "./useModal";
+import { Link } from "react-router-dom";
 
 import moment from "moment";
 import Reply from "./reply";
@@ -36,55 +37,63 @@ export default function Message() {
 
     if (!modalState) {
         return (
-            <div className="msg-container">
-                {message && <h2>Private Messages</h2>}
-                {message &&
-                    message.reverse().map((item, i) => {
-                        return (
-                            <div
-                                key={i + 1}
-                                style={{
-                                    border: "none",
-                                    marginBottom: "0",
-                                }}
-                            >
-                                <div key={item.title} className="msg">
-                                    <img
-                                        src={item.imgurl}
-                                        alt={`${item.firstname} ${item.lastname}`}
-                                    />
-                                    <div
-                                        key={item.firstname}
-                                        className="msg-content"
-                                    >
-                                        <p>
-                                            {moment(
-                                                item.msg_created_at
-                                            ).fromNow()}
-                                            from{" "}
-                                            <strong>
-                                                {item.firstname} ({item.id})
-                                            </strong>
-                                            :
-                                        </p>
-                                        <p>{item.message_text}</p>
-                                    </div>
-                                </div>
-                                <h3
+            <>
+                <div className="msg-container">
+                    {message && <h2>Private Messages</h2>}
+                    {message &&
+                        message.reverse().map((item, i) => {
+                            return (
+                                <div
+                                    key={i + 1}
                                     style={{
-                                        top: "125px",
-                                        right: "430px",
+                                        border: "none",
+                                        marginBottom: "0",
                                     }}
-                                    className="closeY"
-                                    onClick={manageState}
                                 >
-                                    X
-                                </h3>
-                            </div>
-                        );
-                    })}
-                <Reply />
-            </div>
+                                    <div key={item.title} className="msg">
+                                        <Link
+                                            to={`/user/${item.id}`}
+                                            key={item}
+                                        >
+                                            <img
+                                                src={item.imgurl}
+                                                alt={`${item.firstname} ${item.lastname}`}
+                                            />
+                                        </Link>
+                                        <div
+                                            key={item.firstname}
+                                            className="msg-content"
+                                        >
+                                            <p>
+                                                {moment(
+                                                    item.msg_created_at
+                                                ).fromNow()}
+                                                from{" "}
+                                                <strong>
+                                                    {item.firstname}
+                                                </strong>
+                                                :
+                                            </p>
+                                            <p>{item.message_text}</p>
+                                        </div>
+                                    </div>
+                                    <h3
+                                        style={{
+                                            top: "125px",
+                                            right: "500px",
+                                        }}
+                                        className="closeY"
+                                        onClick={manageState}
+                                    >
+                                        X
+                                    </h3>
+                                </div>
+                            );
+                        })}
+                    <Reply />
+                </div>
+                <div className="overlay-msgcontainer"></div>
+            </>
         );
     } else {
         return (

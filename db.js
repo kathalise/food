@@ -102,6 +102,12 @@ module.exports.getOfferByCategory = (category) => {
     return db.query(q, params);
 };
 
+module.exports.getUsersOffers = (offererId) => {
+    const q = `SELECT * FROM offers WHERE offerer_id=$1`;
+    const params = [offererId];
+    return db.query(q, params);
+};
+
 // -------------------  messages  ------------------- //
 module.exports.addPrivateMassages = (senderId, recipientId, message) => {
     const q = `INSERT INTO messages (sender_id, recipient_id, message_text) 

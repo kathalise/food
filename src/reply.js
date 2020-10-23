@@ -77,7 +77,7 @@ export default function Reply() {
                 >
                     <button
                         style={{
-                            width: "250px",
+                            width: "200px",
                         }}
                         onClick={handleSubmit}
                     >

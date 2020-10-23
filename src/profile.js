@@ -5,6 +5,8 @@ import ChangeProfilePic from "./changeProfilePic";
 import useModal from "./useModal";
 import Message from "./message";
 import SendMessage from "./sendMessage";
+import UsersOffers from "./usersOffers";
+import LoggedInUsersOffers from "./userLoggedInOffers";
 
 export default function Profile({
     // firstname,
@@ -52,6 +54,7 @@ export default function Profile({
             </div>
             <ChangeProfilePic />
             <Message userId={user.id} />
+            <LoggedInUsersOffers />
         </>
     );
 }

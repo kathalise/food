@@ -17,6 +17,7 @@ import GetOtherUser from "./getOtherUser";
 import SendMessage from "./sendMessage";
 import Message from "./message";
 import About from "./about.js";
+import UsersOffers from "./usersOffers";
 
 export default function App() {
     const [user, setUser] = useState("");
@@ -80,14 +81,18 @@ export default function App() {
 
                         <Route
                             path="/message/:otherId"
-                            render={() => (
-                                <SendMessage SendMessage userId={user.id} />
-                            )}
+                            render={() => <SendMessage userId={user.id} />}
                         />
                         <Route
                             path="/user/:otherUserId"
                             component={GetOtherUser}
                         />
+                        {/* <Route
+                            exact
+                            path="/user/:otherId"
+                            component={UsersOffers}
+                        /> */}
+
                         <Route
                             exact
                             path="/upload"

@@ -4,6 +4,7 @@ import SendMessage from "./sendMessage";
 import useModal from "./useModal";
 import Route from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import UsersOffers from "./usersOffers";
 
 export default function GetOtherUser(otherUserId) {
     let history = useHistory();
@@ -32,6 +33,7 @@ export default function GetOtherUser(otherUserId) {
             }
         })();
     }, []);
+    console.log("user", user);
 
     return (
         <>
@@ -46,9 +48,11 @@ export default function GetOtherUser(otherUserId) {
                 <h2 style={{ textAlign: "center" }}>
                     {user.firstname} {user.lastname}
                 </h2>
+                {/* <h1>{user.id}</h1> */}
                 {/* <button onClick={toggle}>Message {user.firstname}</button> */}
             </div>
             <SendMessage otherId={user.id} firstname={user.firstname} />
+            <UsersOffers otherUserId={user.id} firstname={user.firstname} />
         </>
     );
 }

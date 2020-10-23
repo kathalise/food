@@ -3,39 +3,62 @@ import axios from "./axios";
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-export default function AllOffers() {
+export default function UsersOffers({ otherUserId, firstname }) {
     const [items, setItems] = useState([]);
     useEffect(() => {
-        console.log("EFFECT IS RUNNING... AllOffers");
+        console.log("EFFECT IS RUNNING... ***otherId:", otherUserId);
 
         (async () => {
             try {
-                const { data } = await axios.get("/get/all-offers");
-                console.log("res from db /get/all-offers, DATA: ", data);
-
+                const { data } = await axios.get(
+                    `/users/offers/${otherUserId}`
+                );
+                console.log("res from db /offer/by/user: ", data);
                 setItems(data);
-                console.log("items", items);
             } catch (err) {
                 console.log("err: ", err);
             }
         })();
-    }, []);
+    }, [otherUserId]);
+
+    // if (otherId) {
+    //     return (
+    //         <>
+    //             <h1>{firstname}'s Offers</h1>
+    //         </>
+    //     );
+    // } else {
+    //     return (
+    //         <>
+    //             <h1>My Offers</h1>
+    //         </>
+    //     );
+    // }
     return (
-        <>
+        <div className="users-offers-container">
             <h1
                 style={{
                     textAlign: "center",
-                    marginBottom: "30px",
                 }}
             >
-                Up For Grabs
+                {firstname}'s Offers
             </h1>
-            <div className="all-offers-container">
+
+            <div className="offers-userprofile">
                 {items &&
                     items.map((item, i) => {
                         return (
-                            <div key={i} className="offers-card">
-                                <Link
+                            <div
+                                style={{
+                                    width: "200px",
+                                    height: "200px",
+                                    marginLeft: "2px",
+                                    marginBottom: "2px",
+                                }}
+                                key={i}
+                                className="offers-card"
+                            >
+                                {/* <Link
                                     style={{
                                         textDecoration: "none",
                                         color: "black",
@@ -43,10 +66,10 @@ export default function AllOffers() {
                                     to={`/by/${item.category}`}
                                     key={item.category}
                                 >
-                                    <h3>#{item.category}</h3>
-                                </Link>
+                                    <h4>#{item.category}</h4>
+                                </Link> */}
 
-                                <h2 style={{ margin: "10px" }}>{item.title}</h2>
+                                <h3>{item.title}</h3>
                                 <Link to={`/offers/${item.id}`} key={item.id}>
                                     <img
                                         key={item.id}
@@ -55,8 +78,8 @@ export default function AllOffers() {
                                             "/default-food.png"
                                         }
                                         style={{
-                                            height: "200px",
-                                            width: "200px",
+                                            height: "80px",
+                                            width: "80px",
                                             objectFit: "cover",
                                         }}
                                     />
@@ -66,6 +89,6 @@ export default function AllOffers() {
                         );
                     })}
             </div>
-        </>
+        </div>
     );
 }

@@ -90,9 +90,11 @@ export default function Welcome() {
                         </>
                     </HashRouter>
                 </div>
-                <footer>
-                    <Footer />
-                </footer>
+                <HashRouter>
+                    <footer>
+                        <Footer />
+                    </footer>
+                </HashRouter>
             </div>
         </div>
     );
