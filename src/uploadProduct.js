@@ -33,6 +33,7 @@ function useInputSubmit(url, values) {
                 // console.log("data:", data);
                 if (data.success) {
                     location.replace("/");
+
                     console.log("UPLOAD SUCCESSFUL");
                 }
             })

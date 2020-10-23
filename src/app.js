@@ -41,6 +41,7 @@ export default function App() {
             <div className="app-container">
                 <header>
                     <Header />
+
                     <div className="reg-buttons">
                         <button>
                             <Link
@@ -57,7 +58,7 @@ export default function App() {
                                 style={{ textDecoration: "none" }}
                             >
                                 {" "}
-                                My Profile{" "}
+                                {user.firstname}'s
                             </Link>
                         </button>
 
